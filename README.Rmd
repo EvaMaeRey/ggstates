@@ -71,9 +71,8 @@ ggplot() +
   aes(fill = Income)
 ```
 
-
-This is a basic example which shows you how to solve a common problem:
-
+# With ggstates
+ 
 ```{r example}
 library(ggplot2)
 library(ggstates)

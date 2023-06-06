@@ -74,7 +74,7 @@ ggplot() +
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
-This is a basic example which shows you how to solve a common problem:
+# With ggstates
 
 ``` r
 library(ggplot2)
