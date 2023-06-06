@@ -1,0 +1,103 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# ggstates
+
+A package to map US state polygons easily from flat file. 
+
+Note on name: ggusa felt too silly and ggunitedstatesamerica felt too long. There are other countries w/ 'states' in their name.
+
+R's convenience datasets uses 'state' to refer to US states.
+
+```{r, eval = F}
+state.abb
+state.area
+state.center
+state.division
+state.name
+state.region
+state.x77
+```
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+
+## Installation
+
+You can install the development version of ggstates from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("EvaMaeRey/ggstates")
+```
+
+## without ggstates
+
+```{r}
+library(sf)
+library(tidyverse)
+
+states_attributes <- state.x77 %>% 
+  data.frame() %>% 
+  rownames_to_column(var = "state")
+
+
+# https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html
+states_geometries <- read_sf("data-raw/cb_2018_us_state_20m/cb_2018_us_state_20m.shp") %>%   
+  filter(NAME != "Puerto Rico",
+         NAME != "District of Colombia") %>% 
+  select(STUSPS, NAME, geometry)
+
+
+states_attributes %>% 
+  left_join(states_geometries, by = c("state" = "NAME")) %>% 
+ggplot() + 
+  aes(geometry = geometry, state = state.name) +
+  geom_sf() + 
+  coord_sf() + 
+  aes(fill = Income)
+```
+
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(ggplot2)
+library(ggstates)
+
+state_attributes |> head()
+
+library(ggplot2)
+ggplot(state_attributes) +
+aes(state = state_name) +
+geom_state()
+
+ggplot(state_attributes) +
+aes(state = state_name) +
+geom_state(drop_state = c("Hawaii", "Alaska"))
+
+ggplot(state_attributes) +
+aes(state = state_name) +
+geom_state(drop_state = c("Hawaii", "Alaska")) +
+aes(fill = Frost)
+
+last_plot() + 
+  aes(fill = Population)
+
+last_plot() + 
+  aes(fill = Area)
+```
+
