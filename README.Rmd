@@ -98,5 +98,13 @@ last_plot() +
 
 last_plot() + 
   aes(fill = Area)
-```
 
+ggplot(state_attributes) +
+  aes(state = state_name) +
+  geom_state(keep_state = c("New York", "Virginia", 
+                            "Maryland", "West Virginia",
+                            "Pennsylvania",
+                            "New Jersey", "Delaware")) + 
+  aes(fill = state_name)
+
+```

@@ -48,7 +48,7 @@ compute_panel_state <- function(data, scales, keep_state = NULL, drop_state = NU
 
 
   data %>%
-    dplyr::inner_join(reference_filtered, by = join_by(state)) %>%
+    dplyr::inner_join(reference_filtered, by = "state") %>%
     dplyr::mutate(group = -1) %>%
     dplyr::select(-state)
 

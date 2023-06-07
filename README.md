@@ -136,3 +136,13 @@ last_plot() +
 ```
 
 <img src="man/figures/README-example-5.png" width="100%" />
+
+``` r
+
+ggplot(state_attributes) +
+  aes(state = state_name) +
+  geom_state(keep_state = c("New York", "Virginia")) + 
+  aes(fill = state_name)
+```
+
+<img src="man/figures/README-example-6.png" width="100%" />
