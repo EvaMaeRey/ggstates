@@ -4,7 +4,15 @@
 \alias{compute_panel_state}
 \title{Title}
 \usage{
-compute_panel_state(data, scales, keep_state = NULL, drop_state = NULL)
+compute_panel_state(
+  data,
+  scales,
+  keep_state = NULL,
+  drop_state = NULL,
+  alaska_shift,
+  hawaii_shift,
+  alaska_shrink
+)
 }
 \arguments{
 \item{county}{}

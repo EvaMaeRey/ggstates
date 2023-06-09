@@ -10,7 +10,7 @@
 #' @examples
 #' library(dplyr)
 #' #state_attributes |> rename(state = state_name) |> compute_panel_state() |> head()
-compute_panel_state <- function(data, scales, keep_state = NULL, drop_state = NULL){
+compute_panel_state <- function(data, scales, keep_state = NULL, drop_state = NULL, alaska_shift, hawaii_shift, alaska_shrink){
 
   reference_filtered <- state_reference_full
   #
@@ -21,7 +21,11 @@ compute_panel_state <- function(data, scales, keep_state = NULL, drop_state = NU
     reference_filtered %>%
       dplyr::filter(.data$state_name %>%
                       tolower() %in%
-                      keep_state) ->
+                      keep_state |
+                      .data$state_abb %>%
+                      tolower() %in%
+                      keep_state
+                      ) ->
       reference_filtered
 
   }
@@ -41,14 +45,16 @@ compute_panel_state <- function(data, scales, keep_state = NULL, drop_state = NU
   # to prevent overjoining
   reference_filtered %>%
     dplyr::rename(state = state_name) %>%
-    dplyr::select("state", "geometry",
+    dplyr::select("state", "state_abb", "geometry",
                   "xmin","xmax", "ymin", "ymax"
                   ) ->
     reference_filtered
 
 
   data %>%
-    dplyr::inner_join(reference_filtered, by = "state") %>%
+    dplyr::inner_join(reference_filtered
+                      # , by = "state"
+                      ) %>%
     dplyr::mutate(group = -1) %>%
     dplyr::select(-state)
 

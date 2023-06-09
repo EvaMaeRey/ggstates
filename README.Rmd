@@ -107,4 +107,10 @@ ggplot(state_attributes) +
                             "New Jersey", "Delaware")) + 
   aes(fill = state_name)
 
+ggplot(state_attributes) +
+  aes(state = state_name) +
+  geom_state(keep_state = c("CA", "WA", 
+                            "OR", "NV")) + 
+  aes(fill = state_name)
+
 ```

@@ -98,6 +98,7 @@ library(ggplot2)
 ggplot(state_attributes) +
 aes(state = state_name) +
 geom_state()
+#> Joining with `by = join_by(state)`
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
@@ -107,6 +108,7 @@ geom_state()
 ggplot(state_attributes) +
 aes(state = state_name) +
 geom_state(drop_state = c("Hawaii", "Alaska"))
+#> Joining with `by = join_by(state)`
 ```
 
 <img src="man/figures/README-example-2.png" width="100%" />
@@ -117,6 +119,7 @@ ggplot(state_attributes) +
 aes(state = state_name) +
 geom_state(drop_state = c("Hawaii", "Alaska")) +
 aes(fill = Frost)
+#> Joining with `by = join_by(state)`
 ```
 
 <img src="man/figures/README-example-3.png" width="100%" />
@@ -125,6 +128,7 @@ aes(fill = Frost)
 
 last_plot() + 
   aes(fill = Population)
+#> Joining with `by = join_by(state)`
 ```
 
 <img src="man/figures/README-example-4.png" width="100%" />
@@ -133,6 +137,7 @@ last_plot() +
 
 last_plot() + 
   aes(fill = Area)
+#> Joining with `by = join_by(state)`
 ```
 
 <img src="man/figures/README-example-5.png" width="100%" />
@@ -146,6 +151,19 @@ ggplot(state_attributes) +
                             "Pennsylvania",
                             "New Jersey", "Delaware")) + 
   aes(fill = state_name)
+#> Joining with `by = join_by(state)`
 ```
 
 <img src="man/figures/README-example-6.png" width="100%" />
+
+``` r
+
+ggplot(state_attributes) +
+  aes(state = state_name) +
+  geom_state(keep_state = c("CA", "WA", 
+                            "OR", "NV")) + 
+  aes(fill = state_name)
+#> Joining with `by = join_by(state)`
+```
+
+<img src="man/figures/README-example-7.png" width="100%" />
