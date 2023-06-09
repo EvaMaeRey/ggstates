@@ -37,7 +37,10 @@ compute_panel_state <- function(data, scales, keep_state = NULL, drop_state = NU
     reference_filtered %>%
       dplyr::filter(!(.data$state_name %>%
                       tolower() %in%
-                      drop_state)) ->
+                      drop_state |
+                        .data$state_abb %>%
+                        tolower() %in%
+                        drop_state)) ->
       reference_filtered
 
   }
