@@ -11,6 +11,7 @@ geom_state(
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
+  crs = 4326,
   ...
 )
 }
