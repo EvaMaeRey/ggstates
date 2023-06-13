@@ -106,7 +106,7 @@ geom_state <- function(
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
-  crs = 4326,
+  crs = "NAD27", # 4269 #
   ...
 ) {
 
@@ -119,7 +119,7 @@ geom_state <- function(
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = rlang::list2(na.rm = na.rm, ...)),
-    coord_sf(crs = crs, default = TRUE)
+    coord_sf(crs = crs, default = F)
   )
 
 }

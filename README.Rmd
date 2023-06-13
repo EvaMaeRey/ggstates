@@ -113,4 +113,20 @@ ggplot(state_attributes) +
                             "OR", "NV")) + 
   aes(fill = state_name)
 
+# rot = function(a) matrix(c(cos(a), sin(a), -sin(a), cos(a)), 2, 2)
+# nc = st_read(system.file("shape/nc.shp", package="sf"), quiet = TRUE)
+# ncg = st_geometry(nc)
+# plot(ncg, border = 'grey')
+# cntrd = st_centroid(ncg)
+# ncg2 = (ncg - cntrd) * rot(pi/2) * .75 + cntrd
+# plot(ncg2, add = TRUE)
+# plot(cntrd, col = 'red', add = TRUE, cex = .5)
+# 
+# ggstates::state_reference_full %>% 
+#   st_geometry() %>% 
+#   mutate(geometry = ifelse(state_name == "Alaska", geometry + 100, geometry)) %>% 
+#   sf::as_()
+#   ggplot() + 
+#   geom_sf(aes(geometry = geometry))
+
 ```
